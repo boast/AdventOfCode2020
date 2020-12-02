@@ -21,7 +21,7 @@ namespace AdventOfCode2020.Days
                 {
                     Header = new PanelHeader("[bold blue]Solution 1[/]", Justify.Center),
                     Border = BoxBorder.Rounded,
-                    Padding = new Padding(3, 1),
+                    Padding = new Padding(5, 1),
                 });
 
                 AnsiConsole.WriteLine();
@@ -30,13 +30,15 @@ namespace AdventOfCode2020.Days
                 {
                     Header = new PanelHeader("[bold blue]Solution 2[/]", Justify.Center),
                     Border = BoxBorder.Rounded,
-                    Padding = new Padding(3, 1),
+                    Padding = new Padding(5, 1),
                 });
             }
             catch (Exception e)
             {
-                AnsiConsole.WriteException(e, ExceptionFormats.ShortenPaths | ExceptionFormats.ShortenTypes |
-                                              ExceptionFormats.ShortenMethods | ExceptionFormats.ShowLinks);
+                AnsiConsole.WriteException(e, ExceptionFormats.ShortenPaths
+                                              | ExceptionFormats.ShortenTypes
+                                              | ExceptionFormats.ShortenMethods
+                                              | ExceptionFormats.ShowLinks);
             }
         }
     }
