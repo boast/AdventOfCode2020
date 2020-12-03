@@ -7,12 +7,12 @@ namespace AdventOfCode2020.Days
 {
     internal class Day02 : Day
     {
-        private readonly Regex _passwordListRegex = new Regex(@"(?<a>\d+)-(?<b>\d+) (?<letter>\w): (?<password>\w+)");
-        private IEnumerable<(string password, char character, int a, int b)> GetPasswordPolicies(IEnumerable<string> input)
+        private static readonly Regex PasswordListRegex = new Regex(@"(?<a>\d+)-(?<b>\d+) (?<letter>\w): (?<password>\w+)");
+        private static IEnumerable<(string password, char character, int a, int b)> GetPasswordPolicies(IEnumerable<string> input)
         {
             return input.Select(line =>
             {
-                var group = _passwordListRegex.Match(line).Groups;
+                var group = PasswordListRegex.Match(line).Groups;
                 return (group["password"].Value, char.Parse(group["letter"].Value), int.Parse(group["a"].Value), int.Parse(group["b"].Value));
             });
         }
