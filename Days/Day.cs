@@ -6,7 +6,7 @@ using Spectre.Console;
 
 namespace AdventOfCode2020.Days
 {
-    internal abstract class Day
+    public abstract class Day
     {
         protected abstract Task<string> Solve01Async(IEnumerable<string> input);
         protected abstract Task<string> Solve02Async(IEnumerable<string> input);
