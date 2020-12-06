@@ -31,19 +31,17 @@ namespace AdventOfCode2020.Days
 
         /// <inheritdoc />
         protected override async Task<string> Solve01Async(IEnumerable<string> input)
-        {
-            return await Task.FromResult(
+            => await Task.FromResult(
                 GetGroups(input)
                     .Select(groups => groups.Aggregate((current, all) => all + current))
                     .Select(stringGroup => stringGroup.Distinct().Count())
                     .Sum()
-                    .ToString());
-        }
+                    .ToString()
+            );
 
         /// <inheritdoc />
         protected override async Task<string> Solve02Async(IEnumerable<string> input)
-        {
-            return await Task.FromResult(
+            => await Task.FromResult(
                 GetGroups(input)
                     .Select(stringGroup =>
                     {
@@ -58,7 +56,7 @@ namespace AdventOfCode2020.Days
                         return candidates.Count();
                     })
                     .Sum()
-                    .ToString()) ?? throw new InvalidOperationException("Cannot find a solution.");
-        }
+                    .ToString()
+            ) ?? throw new InvalidOperationException("Cannot find a solution.");
     }
 }

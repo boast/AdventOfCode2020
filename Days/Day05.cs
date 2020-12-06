@@ -10,25 +10,31 @@ namespace AdventOfCode2020.Days
         private static IEnumerable<int> GetSeatIds(IEnumerable<string> input)
         {
             return input.Select(line =>
-                Convert.ToInt32(line.Replace('B', '1').Replace('F', '0').Replace('R', '1').Replace('L', '0'), 2));
+                Convert.ToInt32(line
+                    .Replace('B', '1')
+                    .Replace('F', '0')
+                    .Replace('R', '1')
+                    .Replace('L', '0'), 2));
         }
 
         /// <inheritdoc />
         protected override async Task<string> Solve01Async(IEnumerable<string> input)
-        {
-            return await Task.FromResult(GetSeatIds(input).Max().ToString());
-        }
+            => await Task.FromResult(GetSeatIds(input).Max().ToString());
 
         /// <inheritdoc />
         protected override async Task<string> Solve02Async(IEnumerable<string> input)
         {
             var seats = GetSeatIds(input).OrderBy(seatId => seatId).ToArray();
 
+            // The next seat is two ids apart, we have one seat missing
             for (int i = 0; i < seats.Length - 1; i++)
-                // The next seat is two ids apart, we have one seat missing
+            {
+                // The missing seat is the next id
                 if (seats[i + 1] == seats[i] + 2)
-                    // The missing seat is the next id
+                {
                     return await Task.FromResult((seats[i] + 1).ToString());
+                }
+            }
 
             throw new InvalidOperationException("Cannot find a solution.");
         }

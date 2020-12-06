@@ -26,9 +26,7 @@ namespace AdventOfCode2020.Days
 
         /// <inheritdoc />
         protected override async Task<string> Solve01Async(IEnumerable<string> input)
-        {
-            return await Task.FromResult(GetTreeBySlope(new Map(input), 3, 1).ToString());
-        }
+            => await Task.FromResult(GetTreeBySlope(new Map(input), 3, 1).ToString());
 
         /// <inheritdoc />
         protected override async Task<string> Solve02Async(IEnumerable<string> input)
@@ -42,7 +40,8 @@ namespace AdventOfCode2020.Days
             long treeCountSlope5 = GetTreeBySlope(map, 1, 2);
 
             return await Task.FromResult(
-                (treeCountSlope1 * treeCountSlope2 * treeCountSlope3 * treeCountSlope4 * treeCountSlope5).ToString());
+                (treeCountSlope1 * treeCountSlope2 * treeCountSlope3 * treeCountSlope4 * treeCountSlope5).ToString()
+            );
         }
 
         private class Map
@@ -59,8 +58,12 @@ namespace AdventOfCode2020.Days
                 _map = new Dictionary<Point, char>();
 
                 for (int y = 0; y < YMax; y++)
-                for (int x = 0; x < XMax; x++)
-                    _map.Add(new Point(x, y), inputArray[y][x]);
+                {
+                    for (int x = 0; x < XMax; x++)
+                    {
+                        _map.Add(new Point(x, y), inputArray[y][x]);
+                    }
+                }
             }
 
             private int XMax { get; }
@@ -68,10 +71,20 @@ namespace AdventOfCode2020.Days
 
             public char GetCell(int x, int y)
             {
-                if (y >= YMax || y < 0) throw new ArgumentException($"y invalid : {y}", nameof(y));
-                if (x < 0) throw new ArgumentException($"x invalid : {x}", nameof(x));
+                if (y >= YMax || y < 0)
+                {
+                    throw new ArgumentException($"y invalid : {y}", nameof(y));
+                }
 
-                if (x >= XMax) x %= XMax;
+                if (x < 0)
+                {
+                    throw new ArgumentException($"x invalid : {x}", nameof(x));
+                }
+
+                if (x >= XMax)
+                {
+                    x %= XMax;
+                }
 
                 return _map[new Point(x, y)];
             }

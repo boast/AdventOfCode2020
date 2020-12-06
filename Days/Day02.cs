@@ -12,14 +12,16 @@ namespace AdventOfCode2020.Days
 
         private static IEnumerable<(string password, char character, int a, int b)> GetPasswordPolicies(
             IEnumerable<string> input)
-        {
-            return input.Select(line =>
+            => input.Select(line =>
             {
-                var group = PasswordListRegex.Match(line).Groups;
-                return (group["password"].Value, char.Parse(group["letter"].Value), int.Parse(group["a"].Value),
-                    int.Parse(group["b"].Value));
+                var currentGroup = PasswordListRegex.Match(line).Groups;
+                return (
+                    currentGroup["password"].Value,
+                    char.Parse(currentGroup["letter"].Value),
+                    int.Parse(currentGroup["a"].Value),
+                    int.Parse(currentGroup["b"].Value)
+                );
             });
-        }
 
         /// <inheritdoc />
         protected override async Task<string> Solve01Async(IEnumerable<string> input)

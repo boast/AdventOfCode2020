@@ -26,15 +26,13 @@ namespace AdventOfCode2020.Days
                           "\"," // convert to json properties (_ is space). foo:bar_ -> "foo":"bar",
             ).ToArray());
 
-            string
-                wrappedJson =
-                    $"[{{{flattenInput}}}]"; // wrap as array and start/finish the first/last object. "foo":"bar",}{"foo":"bar", -> [{"foo":"bar",}{"foo":"bar",}]
+            // wrap as array and start/finish the first/last object. "foo":"bar",}{"foo":"bar", -> [{"foo":"bar",}{"foo":"bar",}]
+            string wrappedJson = $"[{{{flattenInput}}}]";
 
             var options = new JsonSerializerOptions
             {
-                AllowTrailingCommas = true, // important
-                PropertyNameCaseInsensitive =
-                    true, // only needed because we want c# style naming conventions in the Passport class
+                AllowTrailingCommas = true,
+                PropertyNameCaseInsensitive = true,
             };
 
             return JsonSerializer.Deserialize<IEnumerable<Passport>>(wrappedJson, options);
