@@ -10,13 +10,13 @@ namespace AdventOfCode2020.Days
     {
         protected abstract Task<string> Solve01Async(IEnumerable<string> input);
         protected abstract Task<string> Solve02Async(IEnumerable<string> input);
-        
+
         public async Task Run()
         {
             try
             {
                 var input = await File.ReadAllLinesAsync($"Input/{GetType().Name}.txt");
-                
+
                 AnsiConsole.Render(new Panel(await Solve01Async(input))
                 {
                     Header = new PanelHeader("[bold blue]Solution 1[/]", Justify.Center),
@@ -25,7 +25,7 @@ namespace AdventOfCode2020.Days
                 });
 
                 AnsiConsole.WriteLine();
-            
+
                 AnsiConsole.Render(new Panel(await Solve02Async(input))
                 {
                     Header = new PanelHeader("[bold blue]Solution 2[/]", Justify.Center),
