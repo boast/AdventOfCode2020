@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,19 +40,19 @@ namespace AdventOfCode2020.Days
             var adapters = input.Select(long.Parse).Append(0).OrderBy(adapter => adapter).ToList();
             // Initialize all possible variants with 0, except the first as 1
             var variants = adapters.Select(adapter => adapter == 0L ? 1L : 0L).ToList();
-            
+
             for (int i = 0; i < adapters.Count; i++)
             {
                 variants[i] += Enumerable
                     // Check last 3 adapters
-                    .Range(i - 3, 3) 
+                    .Range(i - 3, 3)
                     // Check if candidate is valid and the candidate adapter is in valid distance
                     .Where(candidate => candidate >= 0 && adapters[i] <= adapters[candidate] + 3)
                     // Get from all candidates the possible variants
                     .Select(candidate => variants[candidate])
                     .Sum();
             }
-            
+
             return await Task.FromResult(variants.Last().ToString());
         }
     }
