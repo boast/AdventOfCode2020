@@ -9,8 +9,8 @@ namespace AdventOfCode2020.Days
     {
         private static readonly Point MoveNorth = new Point(0, 1);
         private static readonly Point MoveSouth = new Point(0, -1);
-        private static readonly Point MoveEast = new Point(1, 0);
-        private static readonly Point MoveWest = new Point(-1, 0);
+        private static readonly Point MoveEast = new Point(1);
+        private static readonly Point MoveWest = new Point(-1);
 
         private static Direction Reverse(Direction direction)
             => direction switch
