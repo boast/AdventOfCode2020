@@ -2,7 +2,7 @@
 
 namespace AdventOfCode2020
 {
-    public readonly struct Point
+    public readonly struct Point : IEquatable<Point>
     {
         public int X { get; }
         public int Y { get; }
@@ -32,6 +32,18 @@ namespace AdventOfCode2020
 
             return new Point(point.X / value, point.Y / value);
         }
+
+        public static bool operator ==(Point point, Point other) => point.Equals(other);
+        public static bool operator !=(Point point, Point other) => !point.Equals(other);
+
+        /// <inheritdoc />
+        public bool Equals(Point other) => X == other.X && Y == other.Y;
+
+        /// <inheritdoc />
+        public override bool Equals(object? obj) => obj is Point other && Equals(other);
+
+        /// <inheritdoc />
+        public override int GetHashCode() => HashCode.Combine(X, Y);
 
         /// <inheritdoc />
         public override string ToString() => $"({X},{Y})";
