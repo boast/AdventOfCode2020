@@ -53,7 +53,7 @@ namespace AdventOfCode2020.Days
             } * value;
 
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
         {
             var instructions = GetInstructions(input);
 
@@ -101,11 +101,11 @@ namespace AdventOfCode2020.Days
                 }
             }
 
-            return await Task.FromResult(Point.Origin.ManhattanDistance(ship).ToString());
+            return await Task.FromResult(Point.Origin.ManhattanDistance(ship));
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
             var instructions = GetInstructions(input);
 
@@ -153,7 +153,7 @@ namespace AdventOfCode2020.Days
                 }
             }
 
-            return await Task.FromResult(Point.Origin.ManhattanDistance(ship).ToString());
+            return await Task.FromResult(Point.Origin.ManhattanDistance(ship));
         }
 
         private enum Direction

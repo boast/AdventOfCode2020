@@ -7,7 +7,7 @@ namespace AdventOfCode2020.Days
     internal class Day13 : Day
     {
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
         {
             var inputs = input.ToList();
 
@@ -21,11 +21,11 @@ namespace AdventOfCode2020.Days
 
             (long earliestId, long earliestWait) = busIds.OrderBy(busId => busId.wait).First();
 
-            return await Task.FromResult((earliestId * earliestWait).ToString());
+            return await Task.FromResult(earliestId * earliestWait);
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
             var busIds = input
                 .ElementAt(1)
@@ -33,26 +33,25 @@ namespace AdventOfCode2020.Days
                 .Select((busId, i) => (busId, i))
                 .Where(bus => bus.busId != "x")
                 .Select(bus => (modulus: long.Parse(bus.busId), remainder: bus.i))
-                .OrderBy(bus => bus.modulus)
                 .ToList();
 
-            long baseRemainder = busIds[0].remainder;
+            // Chinese Reminder Theorem
+            // As first remainder is 0 (we do not need to sort, only practical by hand),
+            // the initial step is simple.
             long increment = busIds[0].modulus;
             long solution = 0;
 
-            foreach ((long currentModulus, int currentRemainder) in busIds.Skip(1))
+            foreach ((long modulus, int remainder) in busIds.Skip(1))
             {
-                while ((solution + currentRemainder - baseRemainder) % currentModulus != 0)
+                while ((solution + remainder) % modulus != 0)
                 {
                     solution += increment;
                 }
 
-                increment *= currentModulus;
+                increment *= modulus;
             }
 
-            solution -= baseRemainder;
-
-            return await Task.FromResult(solution.ToString());
+            return await Task.FromResult(solution);
         }
     }
 }

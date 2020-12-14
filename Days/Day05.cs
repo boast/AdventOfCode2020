@@ -18,11 +18,11 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
-            => await Task.FromResult(GetSeatIds(input).Max().ToString());
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
+            => await Task.FromResult(GetSeatIds(input).Max());
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
             var seats = GetSeatIds(input).OrderBy(seatId => seatId).ToArray();
 
@@ -32,7 +32,7 @@ namespace AdventOfCode2020.Days
                 // The missing seat is the next id
                 if (seats[i + 1] == seats[i] + 2)
                 {
-                    return await Task.FromResult((seats[i] + 1).ToString());
+                    return await Task.FromResult(seats[i] + 1);
                 }
             }
 

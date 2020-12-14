@@ -24,11 +24,11 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
-            => await Task.FromResult(GetTreeBySlope(new Map(input), 3, 1).ToString());
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
+            => await Task.FromResult(GetTreeBySlope(new Map(input), 3, 1));
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
             var map = new Map(input);
 
@@ -39,7 +39,7 @@ namespace AdventOfCode2020.Days
             long treeCountSlope5 = GetTreeBySlope(map, 1, 2);
 
             return await Task.FromResult(
-                (treeCountSlope1 * treeCountSlope2 * treeCountSlope3 * treeCountSlope4 * treeCountSlope5).ToString()
+                treeCountSlope1 * treeCountSlope2 * treeCountSlope3 * treeCountSlope4 * treeCountSlope5
             );
         }
 

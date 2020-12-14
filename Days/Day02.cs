@@ -24,7 +24,7 @@ namespace AdventOfCode2020.Days
             });
 
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
         {
             var passwords = GetPasswordPolicies(input);
 
@@ -36,11 +36,11 @@ namespace AdventOfCode2020.Days
                 return occurrences >= a && occurrences <= b;
             });
 
-            return await Task.FromResult(count.ToString());
+            return await Task.FromResult(count);
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
             var passwords = GetPasswordPolicies(input);
 
@@ -50,7 +50,7 @@ namespace AdventOfCode2020.Days
                 return (password[a - 1] == character) ^ (password[b - 1] == character);
             });
 
-            return await Task.FromResult(count.ToString());
+            return await Task.FromResult(count);
         }
     }
 }

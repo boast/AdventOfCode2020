@@ -7,7 +7,7 @@ namespace AdventOfCode2020.Days
     public class Day08 : Day
     {
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
         {
             var instructions = ConsoleVM.Parse(input);
             var registers = new ConsoleVM.Registers();
@@ -18,11 +18,11 @@ namespace AdventOfCode2020.Days
                 registers = ConsoleVM.Step(instructions, registers);
             }
 
-            return await Task.FromResult(registers.ACC.ToString());
+            return await Task.FromResult(registers.ACC);
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
             var instructions = ConsoleVM.Parse(input);
 
@@ -61,7 +61,7 @@ namespace AdventOfCode2020.Days
                 }
                 catch (InvalidOperationException)
                 {
-                    return await Task.FromResult(registers.ACC.ToString());
+                    return await Task.FromResult(registers.ACC);
                 }
             }
 

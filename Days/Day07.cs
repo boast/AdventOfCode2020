@@ -39,13 +39,12 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
         {
             var bags = GetBags(input);
 
             return await Task.FromResult(
                 bags.Count(bag => ContainsRecursive(bag.Key, "shiny gold", bags))
-                    .ToString()
             );
         }
 
@@ -53,11 +52,11 @@ namespace AdventOfCode2020.Days
             => 1 + bags[key].Sum(bag => CountRecursive(bag.bag, bags) * bag.count);
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
             var bags = GetBags(input);
 
-            return await Task.FromResult((CountRecursive("shiny gold", bags) - 1).ToString());
+            return await Task.FromResult(CountRecursive("shiny gold", bags) - 1);
         }
     }
 }

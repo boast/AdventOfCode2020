@@ -112,7 +112,7 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
         {
             var layout = GetLayout(input);
             var seen = new HashSet<string>();
@@ -122,11 +122,11 @@ namespace AdventOfCode2020.Days
                 layout = Step(layout);
             }
 
-            return await Task.FromResult(HashLayout(layout).Count(c => c == '#').ToString());
+            return await Task.FromResult(HashLayout(layout).Count(c => c == '#'));
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
             var layout = GetLayout(input);
             var seen = new HashSet<string>();
@@ -136,7 +136,7 @@ namespace AdventOfCode2020.Days
                 layout = Step(layout, true);
             }
 
-            return await Task.FromResult(HashLayout(layout).Count(c => c == '#').ToString());
+            return await Task.FromResult(HashLayout(layout).Count(c => c == '#'));
         }
     }
 }

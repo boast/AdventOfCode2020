@@ -39,7 +39,7 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
         {
             var passports = ParsePassports(input);
 
@@ -51,11 +51,11 @@ namespace AdventOfCode2020.Days
                 passport.Hcl != null &&
                 passport.Ecl != null &&
                 passport.Pid != null
-            ).ToString());
+            ));
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
             var passports = ParsePassports(input);
 
@@ -67,7 +67,7 @@ namespace AdventOfCode2020.Days
                 passport.Hcl != null && _regexHcl.IsMatch(passport.Hcl) &&
                 passport.Ecl != null && _regexEcl.IsMatch(passport.Ecl) &&
                 passport.Pid != null && _regexPid.IsMatch(passport.Pid)
-            ).ToString());
+            ));
         }
 
         // ReSharper disable once ClassNeverInstantiated.Local

@@ -8,8 +8,8 @@ namespace AdventOfCode2020.Days
 {
     public abstract class Day
     {
-        protected abstract Task<string> Solve01Async(IEnumerable<string> input);
-        protected abstract Task<string> Solve02Async(IEnumerable<string> input);
+        protected abstract Task<long> Solve01Async(IEnumerable<string> input);
+        protected abstract Task<long> Solve02Async(IEnumerable<string> input);
 
         public async Task Run()
         {
@@ -17,7 +17,7 @@ namespace AdventOfCode2020.Days
             {
                 var input = await File.ReadAllLinesAsync($"Input/{GetType().Name}.txt");
 
-                AnsiConsole.Render(new Panel(await Solve01Async(input))
+                AnsiConsole.Render(new Panel((await Solve01Async(input)).ToString())
                 {
                     Header = new PanelHeader("[bold blue]Solution 1[/]", Justify.Center),
                     Border = BoxBorder.Rounded,
@@ -26,7 +26,7 @@ namespace AdventOfCode2020.Days
 
                 AnsiConsole.WriteLine();
 
-                AnsiConsole.Render(new Panel(await Solve02Async(input))
+                AnsiConsole.Render(new Panel((await Solve02Async(input)).ToString())
                 {
                     Header = new PanelHeader("[bold blue]Solution 2[/]", Justify.Center),
                     Border = BoxBorder.Rounded,

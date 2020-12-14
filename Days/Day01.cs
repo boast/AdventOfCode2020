@@ -8,7 +8,7 @@ namespace AdventOfCode2020.Days
     internal class Day01 : Day
     {
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
         {
             var expenses = input.Select(int.Parse).ToList();
 
@@ -18,7 +18,7 @@ namespace AdventOfCode2020.Days
                 {
                     if (expenses[i] + expenses[j] == 2020)
                     {
-                        return await Task.FromResult((expenses[i] * expenses[j]).ToString());
+                        return await Task.FromResult(expenses[i] * expenses[j]);
                     }
                 }
             }
@@ -27,7 +27,7 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
             var expenses = input.Select(int.Parse).ToList();
 
@@ -39,7 +39,7 @@ namespace AdventOfCode2020.Days
                     {
                         if (expenses[i] + expenses[j] + expenses[k] == 2020)
                         {
-                            return await Task.FromResult((expenses[i] * expenses[j] * expenses[k]).ToString());
+                            return await Task.FromResult(expenses[i] * expenses[j] * expenses[k]);
                         }
                     }
                 }

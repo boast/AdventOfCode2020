@@ -7,7 +7,7 @@ namespace AdventOfCode2020.Days
     internal class Day10 : Day
     {
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
         {
             var adapters = input.Select(int.Parse).OrderBy(adapter => adapter);
 
@@ -30,11 +30,11 @@ namespace AdventOfCode2020.Days
                 current = adapter;
             }
 
-            return await Task.FromResult((diff1 * diff3).ToString());
+            return await Task.FromResult(diff1 * diff3);
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
             // As the last one has only ever one variant, it does not change the global variant count
             var adapters = input.Select(long.Parse).Append(0).OrderBy(adapter => adapter).ToList();
@@ -53,7 +53,7 @@ namespace AdventOfCode2020.Days
                     .Sum();
             }
 
-            return await Task.FromResult(variants.Last().ToString());
+            return await Task.FromResult(variants.Last());
         }
     }
 }

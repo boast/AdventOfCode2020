@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,17 +29,16 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<string> Solve01Async(IEnumerable<string> input)
+        protected override async Task<long> Solve01Async(IEnumerable<string> input)
             => await Task.FromResult(
                 GetGroups(input)
                     .Select(groups => groups.Aggregate((current, all) => all + current))
                     .Select(stringGroup => stringGroup.Distinct().Count())
                     .Sum()
-                    .ToString()
             );
 
         /// <inheritdoc />
-        protected override async Task<string> Solve02Async(IEnumerable<string> input)
+        protected override async Task<long> Solve02Async(IEnumerable<string> input)
             => await Task.FromResult(
                 GetGroups(input)
                     .Select(stringGroup =>
@@ -56,7 +54,6 @@ namespace AdventOfCode2020.Days
                         return candidates.Count();
                     })
                     .Sum()
-                    .ToString()
-            ) ?? throw new InvalidOperationException("Cannot find a solution.");
+            );
     }
 }
