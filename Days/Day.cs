@@ -15,7 +15,7 @@ namespace AdventOfCode2020.Days
         {
             try
             {
-                var input = await File.ReadAllLinesAsync($"Input/{GetType().Name}.txt");
+                string[] input = await File.ReadAllLinesAsync($"Input/{GetType().Name}.txt");
 
                 AnsiConsole.Render(new Panel((await Solve01Async(input)).ToString())
                 {

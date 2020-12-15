@@ -24,7 +24,7 @@ namespace AdventOfCode2020.Days
         /// <inheritdoc />
         protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
-            var seats = GetSeatIds(input).OrderBy(seatId => seatId).ToArray();
+            int[] seats = GetSeatIds(input).OrderBy(seatId => seatId).ToArray();
 
             // The next seat is two ids apart, we have one seat missing
             for (int i = 0; i < seats.Length - 1; i++)

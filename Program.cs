@@ -1,13 +1,2 @@
-﻿using System.Threading.Tasks;
-using AdventOfCode2020.Days;
-
-namespace AdventOfCode2020
-{
-    public class Program
-    {
-        public static async Task Main(string[] args)
-        {
-            await new Day14().Run();
-        }
-    }
-}
+﻿// C#9 is awesome
+await new AdventOfCode2020.Days.Day14().Run();

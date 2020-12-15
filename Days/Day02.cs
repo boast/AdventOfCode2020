@@ -7,8 +7,7 @@ namespace AdventOfCode2020.Days
 {
     internal class Day02 : Day
     {
-        private static readonly Regex PasswordListRegex =
-            new Regex(@"(?<a>\d+)-(?<b>\d+) (?<letter>\w): (?<password>\w+)");
+        private static readonly Regex PasswordListRegex = new(@"(?<a>\d+)-(?<b>\d+) (?<letter>\w): (?<password>\w+)");
 
         private static IEnumerable<(string password, char character, int a, int b)> GetPasswordPolicies(
             IEnumerable<string> input)

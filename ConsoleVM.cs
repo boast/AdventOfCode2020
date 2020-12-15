@@ -8,7 +8,7 @@ namespace AdventOfCode2020
 {
     internal static class ConsoleVM
     {
-        private static readonly Regex ParseRegex = new Regex("(?<operation>\\w+) (?<argument>(\\+|-)\\d+)");
+        private static readonly Regex ParseRegex = new("(?<operation>\\w+) (?<argument>(\\+|-)\\d+)");
 
         private static Operation OperationFromString(string value) => Enum.Parse<Operation>(value, true);
 
@@ -43,7 +43,7 @@ namespace AdventOfCode2020
                     pc++;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(instruction), "Invalid Instruction");
             }
 
             return new Registers(pc, acc);
@@ -56,7 +56,6 @@ namespace AdventOfCode2020
             JMP,
             NOP,
         }
-
         internal class Instruction
         {
             public Instruction(Operation operation, long argument) => (Operation, Argument) = (operation, argument);

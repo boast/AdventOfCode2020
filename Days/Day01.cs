@@ -31,7 +31,7 @@ namespace AdventOfCode2020.Days
         {
             var expenses = input.Select(int.Parse).ToList();
 
-            for (int i = 0; i < expenses.Count() - 2; i++)
+            for (int i = 0; i < expenses.Count - 2; i++)
             {
                 for (int j = i + 1; j < expenses.Count - 1; j++)
                 {

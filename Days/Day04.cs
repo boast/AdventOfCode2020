@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
@@ -9,17 +10,17 @@ namespace AdventOfCode2020.Days
 {
     internal class Day04 : Day
     {
-        private readonly Regex _regexByr = new Regex("^(19[2-9](\\d))|(200[0-2])$");
-        private readonly Regex _regexEcl = new Regex("^(amb)|(blu)|(brn)|(gry)|(grn)|(hzl)|(oth)$");
-        private readonly Regex _regexEyr = new Regex("^(202\\d)|(2030)$");
-        private readonly Regex _regexHcl = new Regex("^#[0-9a-f]{6}$");
-        private readonly Regex _regexHgt = new Regex("^((59|6\\d|7[0-6])in)|((1[5-8]\\d|19[0-3])cm)$");
-        private readonly Regex _regexIyr = new Regex("^(201\\d)|(2020)$");
-        private readonly Regex _regexPid = new Regex("^\\d{9}$");
+        private readonly Regex _regexByr = new("^(19[2-9](\\d))|(200[0-2])$");
+        private readonly Regex _regexEcl = new("^(amb)|(blu)|(brn)|(gry)|(grn)|(hzl)|(oth)$");
+        private readonly Regex _regexEyr = new("^(202\\d)|(2030)$");
+        private readonly Regex _regexHcl = new("^#[0-9a-f]{6}$");
+        private readonly Regex _regexHgt = new("^((59|6\\d|7[0-6])in)|((1[5-8]\\d|19[0-3])cm)$");
+        private readonly Regex _regexIyr = new("^(201\\d)|(2020)$");
+        private readonly Regex _regexPid = new("^\\d{9}$");
 
         private static IEnumerable<Passport> ParsePassports(IEnumerable<string> input)
         {
-            string flattenInput = new string(input.SelectMany(line =>
+            string flattenInput = new(input.SelectMany(line =>
                     line == string.Empty
                         ? "},{" // combine objects
                         : "\"" + line.Replace(":", "\":\"").Replace(" ", "\",\"") +
@@ -35,7 +36,7 @@ namespace AdventOfCode2020.Days
                 PropertyNameCaseInsensitive = true,
             };
 
-            return JsonSerializer.Deserialize<IEnumerable<Passport>>(wrappedJson, options);
+            return JsonSerializer.Deserialize<IEnumerable<Passport>>(wrappedJson, options) ?? Array.Empty<Passport>();
         }
 
         /// <inheritdoc />

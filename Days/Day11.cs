@@ -15,7 +15,7 @@ namespace AdventOfCode2020.Days
             => input.Select(line => line.ToCharArray()).ToArray();
 
         private static string HashLayout(IEnumerable<char[]> layout)
-            => new string(layout.SelectMany(rows => rows).ToArray());
+            => new(layout.SelectMany(rows => rows).ToArray());
 
         private static bool IsSeat(char c)
             => c == Occupied || c == Empty;
@@ -85,7 +85,7 @@ namespace AdventOfCode2020.Days
             int ySize = layout.Length;
             int xSize = layout[0].Length;
 
-            var nextLayout = new char[ySize][];
+            char[][] nextLayout = new char[ySize][];
 
             for (int y = 0; y < ySize; y++)
             {
@@ -114,7 +114,7 @@ namespace AdventOfCode2020.Days
         /// <inheritdoc />
         protected override async Task<long> Solve01Async(IEnumerable<string> input)
         {
-            var layout = GetLayout(input);
+            char[][] layout = GetLayout(input);
             var seen = new HashSet<string>();
 
             while (seen.Add(HashLayout(layout)))
@@ -128,7 +128,7 @@ namespace AdventOfCode2020.Days
         /// <inheritdoc />
         protected override async Task<long> Solve02Async(IEnumerable<string> input)
         {
-            var layout = GetLayout(input);
+            char[][] layout = GetLayout(input);
             var seen = new HashSet<string>();
 
             while (seen.Add(HashLayout(layout)))

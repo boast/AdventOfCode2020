@@ -49,7 +49,7 @@ namespace AdventOfCode2020.Days
 
             public Map(IEnumerable<string> input)
             {
-                var inputArray = input as string[] ?? input.ToArray();
+                string[]? inputArray = input as string[] ?? input.ToArray();
 
                 YMax = inputArray.Length;
                 XMax = inputArray[0].Length;

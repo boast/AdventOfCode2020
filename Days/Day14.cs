@@ -9,7 +9,7 @@ namespace AdventOfCode2020.Days
 {
     internal class Day14 : Day
     {
-        private readonly Regex _memoryRegex = new Regex("mem\\[(?<address>\\d+)\\] = (?<value>\\d+)");
+        private readonly Regex _memoryRegex = new("mem\\[(?<address>\\d+)\\] = (?<value>\\d+)");
         private static string ToInt36Bin(long value) => Convert.ToString(value, 2).PadLeft(36, '0');
 
         /// <inheritdoc />
@@ -59,7 +59,7 @@ namespace AdventOfCode2020.Days
                     (int address, long value) = (int.Parse(matchGroups["address"].Value),
                         long.Parse(matchGroups["value"].Value));
 
-                    string maskedAddress = new string(ToInt36Bin(address)
+                    string maskedAddress = new(ToInt36Bin(address)
                         .Select((bit, i) => mask[i] == '0' ? bit : mask[i])
                         .ToArray());
 

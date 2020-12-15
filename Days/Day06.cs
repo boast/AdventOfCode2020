@@ -43,7 +43,7 @@ namespace AdventOfCode2020.Days
                 GetGroups(input)
                     .Select(stringGroup =>
                     {
-                        var groupArray = stringGroup as string[] ?? stringGroup.ToArray();
+                        string[] groupArray = stringGroup as string[] ?? stringGroup.ToArray();
                         IEnumerable<char> candidates = groupArray[0];
 
                         candidates = groupArray

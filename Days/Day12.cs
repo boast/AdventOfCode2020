@@ -7,10 +7,10 @@ namespace AdventOfCode2020.Days
 {
     internal class Day12 : Day
     {
-        private static readonly Point MoveNorth = new Point(0, 1);
-        private static readonly Point MoveSouth = new Point(0, -1);
-        private static readonly Point MoveEast = new Point(1);
-        private static readonly Point MoveWest = new Point(-1);
+        private static readonly Point MoveNorth = new(0, 1);
+        private static readonly Point MoveSouth = new(0, -1);
+        private static readonly Point MoveEast = new(1);
+        private static readonly Point MoveWest = new(-1);
 
         private static Direction Reverse(Direction direction)
             => direction switch
@@ -76,7 +76,7 @@ namespace AdventOfCode2020.Days
                                 90 => TurnLeft(shipDirection),
                                 180 => Reverse(shipDirection),
                                 270 => TurnRight(shipDirection),
-                                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                                _ => throw new ArgumentOutOfRangeException(nameof(value), "Invalid turn value"),
                             };
                             break;
                         case Movement.R:
@@ -85,19 +85,19 @@ namespace AdventOfCode2020.Days
                                 90 => TurnRight(shipDirection),
                                 180 => Reverse(shipDirection),
                                 270 => TurnLeft(shipDirection),
-                                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                                _ => throw new ArgumentOutOfRangeException(nameof(value), "Invalid turn value"),
                             };
                             break;
                         case Movement.F:
                             ship = Move(ship, shipDirection, value);
                             break;
                         default:
-                            throw new ArgumentOutOfRangeException(nameof(instructionShipMovement));
+                            throw new ArgumentOutOfRangeException(nameof(instructionShipMovement), "Invalid ship movement");
                     }
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException(nameof(instruction));
+                    throw new ArgumentOutOfRangeException(nameof(instruction), "Invalid instruction");
                 }
             }
 
@@ -128,7 +128,7 @@ namespace AdventOfCode2020.Days
                                 90 => new Point(-1 * waypoint.Y, waypoint.X),
                                 180 => -waypoint,
                                 270 => new Point(waypoint.Y, -1 * waypoint.X),
-                                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                                _ => throw new ArgumentOutOfRangeException(nameof(value), "Invalid turn value"),
                             };
                             break;
                         case Movement.R:
@@ -137,19 +137,19 @@ namespace AdventOfCode2020.Days
                                 90 => new Point(waypoint.Y, -1 * waypoint.X),
                                 180 => -waypoint,
                                 270 => new Point(-1 * waypoint.Y, waypoint.X),
-                                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                                _ => throw new ArgumentOutOfRangeException(nameof(value), "Invalid turn value"),
                             };
                             break;
                         case Movement.F:
                             ship += waypoint * value;
                             break;
                         default:
-                            throw new ArgumentOutOfRangeException(nameof(instructionShipMovement));
+                            throw new ArgumentOutOfRangeException(nameof(instructionShipMovement), "Invalid ship movement");
                     }
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException(nameof(instruction));
+                    throw new ArgumentOutOfRangeException(nameof(instruction), "Invalid instruction");
                 }
             }
 
