@@ -56,6 +56,7 @@ namespace AdventOfCode2020
             JMP,
             NOP,
         }
+
         internal class Instruction
         {
             public Instruction(Operation operation, long argument) => (Operation, Argument) = (operation, argument);

@@ -40,8 +40,8 @@ namespace AdventOfCode2020.Days
                     // Swap this operation
                     instruction.Operation = instruction switch
                     {
-                        { Operation: ConsoleVM.Operation.JMP } => ConsoleVM.Operation.NOP,
-                        { Operation: ConsoleVM.Operation.NOP } => ConsoleVM.Operation.JMP,
+                        {Operation: ConsoleVM.Operation.JMP} => ConsoleVM.Operation.NOP,
+                        {Operation: ConsoleVM.Operation.NOP} => ConsoleVM.Operation.JMP,
                         _ => throw new InvalidOperationException($"Cannot swap operation '{instruction.Operation}'"),
                     };
 
@@ -54,8 +54,8 @@ namespace AdventOfCode2020.Days
                     // Swap it back
                     instruction.Operation = instruction switch
                     {
-                        { Operation: ConsoleVM.Operation.JMP } => ConsoleVM.Operation.NOP,
-                        { Operation: ConsoleVM.Operation.NOP } => ConsoleVM.Operation.JMP,
+                        {Operation: ConsoleVM.Operation.JMP} => ConsoleVM.Operation.NOP,
+                        {Operation: ConsoleVM.Operation.NOP} => ConsoleVM.Operation.JMP,
                         _ => throw new InvalidOperationException($"Cannot swap operation '{instruction.Operation}'"),
                     };
                 }

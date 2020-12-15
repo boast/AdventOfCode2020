@@ -36,9 +36,6 @@ namespace AdventOfCode2020.Days
         private static Direction TurnRight(Direction direction)
             => TurnLeft(Reverse(direction));
 
-        private static int ManhattanDistance(Point a, Point b)
-            => Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
-
         private static IEnumerable<(string instruction, int value)> GetInstructions(IEnumerable<string> input)
             => input.Select(line => (instruction: line[0].ToString(), value: int.Parse(line.Substring(1))));
 
@@ -92,7 +89,8 @@ namespace AdventOfCode2020.Days
                             ship = Move(ship, shipDirection, value);
                             break;
                         default:
-                            throw new ArgumentOutOfRangeException(nameof(instructionShipMovement), "Invalid ship movement");
+                            throw new ArgumentOutOfRangeException(nameof(instructionShipMovement),
+                                "Invalid ship movement");
                     }
                 }
                 else
@@ -144,7 +142,8 @@ namespace AdventOfCode2020.Days
                             ship += waypoint * value;
                             break;
                         default:
-                            throw new ArgumentOutOfRangeException(nameof(instructionShipMovement), "Invalid ship movement");
+                            throw new ArgumentOutOfRangeException(nameof(instructionShipMovement),
+                                "Invalid ship movement");
                     }
                 }
                 else
