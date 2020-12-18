@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,33 +12,23 @@ namespace AdventOfCode2020.Days
         {
             var queue = new Queue<Token>();
 
-            foreach (char c in input)
+            foreach (char c in input.Where(c => c != ' '))
             {
-                switch (c)
+                var token = c switch
                 {
-                    case ' ':
-                        continue;
-                    case '(':
-                        queue.Enqueue(new Token(TokenType.OpenParenthesis, null));
-                        break;
-                    case ')':
-                        queue.Enqueue(new Token(TokenType.CloseParenthesis, null));
-                        break;
-                    case '+':
-                        queue.Enqueue(new Token(TokenType.Addition, null));
-                        break;
-                    case '*':
-                        queue.Enqueue(new Token(TokenType.Multiplication, null));
-                        break;
-                    default:
-                        queue.Enqueue(new Token(TokenType.Digit, (long)char.GetNumericValue(c)));
-                        break;
-                }
+                    '+' => TokenType.Addition,
+                    '*' => TokenType.Multiplication,
+                    '(' => TokenType.OpenParenthesis,
+                    ')' => TokenType.CloseParenthesis,
+                    _ => TokenType.Digit,
+                };
+                queue.Enqueue(new Token(token, token == TokenType.Digit ? (long) char.GetNumericValue(c) : null));
             }
 
             return queue;
         }
 
+        [SuppressMessage("ReSharper", "SwitchStatementHandlesSomeKnownEnumValuesWithDefault")]
         [SuppressMessage("ReSharper", "SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault")]
         private static long Solve(Queue<Token> tokens)
         {
