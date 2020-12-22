@@ -7,7 +7,7 @@ namespace AdventOfCode2020.Days
     internal class Day10 : Day
     {
         /// <inheritdoc />
-        protected override async Task<long> Solve01Async(IEnumerable<string> input)
+        protected override async Task<object> Solve01Async(IEnumerable<string> input)
         {
             var adapters = input.Select(int.Parse).OrderBy(adapter => adapter);
 
@@ -34,7 +34,7 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<long> Solve02Async(IEnumerable<string> input)
+        protected override async Task<object> Solve02Async(IEnumerable<string> input)
         {
             // As the last one has only ever one variant, it does not change the global variant count
             var adapters = input.Select(long.Parse).Append(0).OrderBy(adapter => adapter).ToList();

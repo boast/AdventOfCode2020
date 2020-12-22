@@ -13,7 +13,7 @@ namespace AdventOfCode2020.Days
         private static string ToInt36Bin(long value) => Convert.ToString(value, 2).PadLeft(36, '0');
 
         /// <inheritdoc />
-        protected override async Task<long> Solve01Async(IEnumerable<string> input)
+        protected override async Task<object> Solve01Async(IEnumerable<string> input)
         {
             string mask = string.Empty;
             var mem = new Dictionary<long, long>();
@@ -42,7 +42,7 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<long> Solve02Async(IEnumerable<string> input)
+        protected override async Task<object> Solve02Async(IEnumerable<string> input)
         {
             string mask = string.Empty;
             var mem = new Dictionary<long, long>();

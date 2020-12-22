@@ -59,7 +59,7 @@ namespace AdventOfCode2020.Days
                 value >= range.range2Start && value <= range.range2End;
 
         /// <inheritdoc />
-        protected override async Task<long> Solve01Async(IEnumerable<string> input)
+        protected override async Task<object> Solve01Async(IEnumerable<string> input)
         {
             var (ranges, _, nearbyTickets) = Parse(input);
             var invalidValues = new List<int>();
@@ -73,7 +73,7 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<long> Solve02Async(IEnumerable<string> input)
+        protected override async Task<object> Solve02Async(IEnumerable<string> input)
         {
             var (ranges, ticket, nearbyTickets) = Parse(input);
             var validTickets = nearbyTickets

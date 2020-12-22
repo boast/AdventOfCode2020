@@ -29,7 +29,7 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<long> Solve01Async(IEnumerable<string> input)
+        protected override async Task<object> Solve01Async(IEnumerable<string> input)
             => await Task.FromResult(
                 GetGroups(input)
                     .Select(groups => groups.Aggregate((current, all) => all + current))
@@ -38,7 +38,7 @@ namespace AdventOfCode2020.Days
             );
 
         /// <inheritdoc />
-        protected override async Task<long> Solve02Async(IEnumerable<string> input)
+        protected override async Task<object> Solve02Async(IEnumerable<string> input)
             => await Task.FromResult(
                 GetGroups(input)
                     .Select(stringGroup =>

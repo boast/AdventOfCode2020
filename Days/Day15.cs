@@ -38,11 +38,11 @@ namespace AdventOfCode2020.Days
                 .ToList();
 
         /// <inheritdoc />
-        protected override async Task<long> Solve01Async(IEnumerable<string> input)
+        protected override async Task<object> Solve01Async(IEnumerable<string> input)
             => await Task.FromResult(IterateUntil(ParseInput(input), 2020));
 
         /// <inheritdoc />
-        protected override async Task<long> Solve02Async(IEnumerable<string> input)
+        protected override async Task<object> Solve02Async(IEnumerable<string> input)
             => await Task.FromResult(IterateUntil(ParseInput(input), 30000000));
     }
 }

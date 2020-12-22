@@ -8,7 +8,7 @@ namespace AdventOfCode2020.Days
     internal class Day09 : Day
     {
         /// <inheritdoc />
-        protected override async Task<long> Solve01Async(IEnumerable<string> input)
+        protected override async Task<object> Solve01Async(IEnumerable<string> input)
         {
             const int preamble = 25;
 
@@ -23,11 +23,11 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<long> Solve02Async(IEnumerable<string> input)
+        protected override async Task<object> Solve02Async(IEnumerable<string> input)
         {
             var inputList = input.ToList();
 
-            long target = await Solve01Async(inputList);
+            long target = (long) await Solve01Async(inputList);
             var numbers = inputList.Select(long.Parse).ToList();
             int currentIndex = 0;
 

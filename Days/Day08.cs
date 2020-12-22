@@ -7,7 +7,7 @@ namespace AdventOfCode2020.Days
     public class Day08 : Day
     {
         /// <inheritdoc />
-        protected override async Task<long> Solve01Async(IEnumerable<string> input)
+        protected override async Task<object> Solve01Async(IEnumerable<string> input)
         {
             var instructions = ConsoleVM.Parse(input);
             var registers = new ConsoleVM.Registers();
@@ -22,7 +22,7 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<long> Solve02Async(IEnumerable<string> input)
+        protected override async Task<object> Solve02Async(IEnumerable<string> input)
         {
             var instructions = ConsoleVM.Parse(input);
 

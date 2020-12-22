@@ -8,7 +8,7 @@ namespace AdventOfCode2020.Days
     internal class Day01 : Day
     {
         /// <inheritdoc />
-        protected override async Task<long> Solve01Async(IEnumerable<string> input)
+        protected override async Task<object> Solve01Async(IEnumerable<string> input)
         {
             var expenses = input.Select(int.Parse).ToList();
 
@@ -27,7 +27,7 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc />
-        protected override async Task<long> Solve02Async(IEnumerable<string> input)
+        protected override async Task<object> Solve02Async(IEnumerable<string> input)
         {
             var expenses = input.Select(int.Parse).ToList();
 
