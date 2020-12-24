@@ -7,6 +7,7 @@ namespace AdventOfCode2020
         public int X { get; }
         public int Y { get; }
         public Point(int x = 0, int y = 0) => (X, Y) = (x, y);
+        public void Deconstruct(out int x, out int y) => (x, y) = (X, Y);
 
         public static readonly Point Origin = new();
 
@@ -22,16 +23,12 @@ namespace AdventOfCode2020
             => new(point.X - otherPoint.X, point.Y - otherPoint.Y);
 
         public static Point operator *(Point point, int value) => new(point.X * value, point.Y * value);
+        public static Point operator *(int value, Point point) => new(point.X * value, point.Y * value);
 
         public static Point operator /(Point point, int value)
-        {
-            if (value == 0)
-            {
-                throw new DivideByZeroException();
-            }
-
-            return new Point(point.X / value, point.Y / value);
-        }
+            => value == 0 ? throw new DivideByZeroException() : new Point(point.X / value, point.Y / value);
+        public static Point operator /(int value, Point point)
+            => point.X == 0 || point.Y == 0 ? throw new DivideByZeroException() : new Point(value / point.X, value / point.Y);
 
         public static bool operator ==(Point point, Point other) => point.Equals(other);
         public static bool operator !=(Point point, Point other) => !point.Equals(other);
