@@ -6,8 +6,6 @@ namespace AdventOfCode2020.Days
 {
     internal class Day22 : Day
     {
-        
-
         private static (Queue<int> deck1, Queue<int> deck2) ParseDecks(IEnumerable<string> input)
         {
             var inputList = input.ToList();
@@ -36,7 +34,7 @@ namespace AdventOfCode2020.Days
                 {
                     return (deck1, new Queue<int>());
                 }
-                
+
                 int card1 = deck1.Dequeue();
                 int card2 = deck2.Dequeue();
 

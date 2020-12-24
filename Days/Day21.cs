@@ -50,7 +50,7 @@ namespace AdventOfCode2020.Days
             {
                 var (allergen, foods) = allergens.First(kvp => kvp.Value.Count == 1);
                 allergens.Remove(allergen);
-                
+
                 dangerousIngredients[allergen] = foods.Single();
 
                 foreach (var allergenKvp in allergens)
