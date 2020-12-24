@@ -7,12 +7,6 @@ namespace AdventOfCode2020.Days
 {
     internal class Day24 : Day
     {
-        private enum TileSide
-        {
-            White,
-            Black,
-        }
-
         private enum NeighbourDirection
         {
             E,
@@ -34,21 +28,14 @@ namespace AdventOfCode2020.Days
             {NeighbourDirection.Nw, new Point(0, -1)},
             {NeighbourDirection.Ne, new Point(1, -1)},
         };
-        
-        // Prevent multiple enumerations of the points only
-        private static readonly IEnumerable<Point> NeighbourPoints
-            = Neighbours.Select(neighbour => neighbour.Value).ToList();
 
         private static IEnumerable<Point> GetNeighbours(Point point)
-            => NeighbourPoints.Select(neighbour => point + neighbour);
+            => Neighbours.Values.Select(neighbour => point + neighbour);
 
-        private static Dictionary<Point, TileSide> ParseTiles(IEnumerable<string> input)
+        private static HashSet<Point> ParseTiles(IEnumerable<string> input)
         {
-            var tiles = new Dictionary<Point, TileSide>
-            {
-                {new Point(), TileSide.White},
-            };
-            
+            var tiles = new HashSet<Point>();
+
             foreach (var directions in input)
             {
                 var tile = Point.Origin;
@@ -67,7 +54,10 @@ namespace AdventOfCode2020.Days
                     buffer = string.Empty;
                 }
                 
-                tiles[tile] = tiles.ContainsKey(tile)&& tiles[tile] == TileSide.Black ? TileSide.White : TileSide.Black;
+                if (!tiles.Add(tile))
+                {
+                    tiles.Remove(tile);
+                }
             }
 
             return tiles;
@@ -77,7 +67,7 @@ namespace AdventOfCode2020.Days
         protected override async Task<object> Solve01Async(IEnumerable<string> input)
         {
             var tiles = ParseTiles(input);
-            return await Task.FromResult(tiles.Count(tile => tile.Value == TileSide.Black));
+            return await Task.FromResult(tiles.Count);
         }
 
         /// <inheritdoc />
@@ -88,42 +78,36 @@ namespace AdventOfCode2020.Days
             
             while (days-- > 0)
             {
-                var blackTilePoints = tiles
-                    .Where(tile => tile.Value == TileSide.Black)
-                    .Select(tile => tile.Key)
-                    .ToList();
-                
-                var nextTilePoints = blackTilePoints
-                    .Concat(blackTilePoints.SelectMany(GetNeighbours))
+                var nextCandidates = tiles
+                    .Concat(tiles.SelectMany(GetNeighbours))
                     .ToHashSet();
                 
-                var nextTiles = new Dictionary<Point, TileSide>();
+                var nextTiles = new HashSet<Point>();
 
-                foreach (var nextTilePoint in nextTilePoints)
+                foreach (var nextCandidate in nextCandidates)
                 {
                     // We iterate manually to "break" the iteration fast
-                    using var neighbours = GetNeighbours(nextTilePoint).GetEnumerator();
-                    int blackCount = 0;
+                    using var neighbours = GetNeighbours(nextCandidate).GetEnumerator();
+                    int count = 0;
 
-                    while (blackCount <= 2 && neighbours.MoveNext())
+                    while (count <= 2 && neighbours.MoveNext())
                     {
-                        blackCount += tiles.ContainsKey(neighbours.Current) && tiles[neighbours.Current] == TileSide.Black ? 1 : 0;
+                        count += tiles.Contains(neighbours.Current) ? 1 : 0;
                     }
-
-                    var previousSide = tiles.ContainsKey(nextTilePoint) ? tiles[nextTilePoint] : TileSide.White;
-
-                    nextTiles[nextTilePoint] = previousSide switch
+                    
+                    switch (tiles.Contains(nextCandidate))
                     {
-                        TileSide.White when blackCount == 2 => TileSide.Black,
-                        TileSide.Black when blackCount == 0 || blackCount > 2 => TileSide.White,
-                        _ => previousSide,
-                    };
+                        case true when count == 1 || count == 2:
+                        case false when count == 2:
+                            nextTiles.Add(nextCandidate);
+                            break;
+                    }
                 }
 
                 tiles = nextTiles;
             }
             
-            return await Task.FromResult(tiles.Count(tile => tile.Value == TileSide.Black));
+            return await Task.FromResult(tiles.Count);
         }
     }
 }
