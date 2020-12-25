@@ -7,16 +7,6 @@ namespace AdventOfCode2020.Days
 {
     internal class Day24 : Day
     {
-        private enum NeighbourDirection
-        {
-            E,
-            Se,
-            Sw,
-            W,
-            Nw,
-            Ne,
-        }
-        
         // Using "Axial Coordinate" system for the hexagonal grid.
         // It allows standard operations (+-*/) from cartesian coordinates.
         private static readonly Dictionary<NeighbourDirection, Point> Neighbours = new()
@@ -53,7 +43,7 @@ namespace AdventOfCode2020.Days
                     tile += Neighbours[neighbourDirection];
                     buffer = string.Empty;
                 }
-                
+
                 if (!tiles.Add(tile))
                 {
                     tiles.Remove(tile);
@@ -62,7 +52,7 @@ namespace AdventOfCode2020.Days
 
             return tiles;
         }
-        
+
         /// <inheritdoc />
         protected override async Task<object> Solve01Async(IEnumerable<string> input)
         {
@@ -75,13 +65,13 @@ namespace AdventOfCode2020.Days
         {
             var tiles = ParseTiles(input);
             int days = 100;
-            
+
             while (days-- > 0)
             {
                 var nextCandidates = tiles
                     .Concat(tiles.SelectMany(GetNeighbours))
                     .ToHashSet();
-                
+
                 var nextTiles = new HashSet<Point>();
 
                 foreach (var nextCandidate in nextCandidates)
@@ -94,7 +84,7 @@ namespace AdventOfCode2020.Days
                     {
                         count += tiles.Contains(neighbours.Current) ? 1 : 0;
                     }
-                    
+
                     switch (tiles.Contains(nextCandidate))
                     {
                         case true when count == 1 || count == 2:
@@ -106,8 +96,18 @@ namespace AdventOfCode2020.Days
 
                 tiles = nextTiles;
             }
-            
+
             return await Task.FromResult(tiles.Count);
+        }
+
+        private enum NeighbourDirection
+        {
+            E,
+            Se,
+            Sw,
+            W,
+            Nw,
+            Ne,
         }
     }
 }

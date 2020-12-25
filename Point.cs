@@ -14,7 +14,7 @@ namespace AdventOfCode2020
         public int ManhattanDistance(Point otherPoint) => Math.Abs(X - otherPoint.X) + Math.Abs(Y - otherPoint.Y);
 
         public static Point operator +(Point point) => point;
-        public static Point operator -(Point point) => new(point.X * -1, point.Y * -1);
+        public static Point operator -(Point point) => -1 * point;
 
         public static Point operator +(Point point, Point otherPoint)
             => new(point.X + otherPoint.X, point.Y + otherPoint.Y);
@@ -27,8 +27,11 @@ namespace AdventOfCode2020
 
         public static Point operator /(Point point, int value)
             => value == 0 ? throw new DivideByZeroException() : new Point(point.X / value, point.Y / value);
+
         public static Point operator /(int value, Point point)
-            => point.X == 0 || point.Y == 0 ? throw new DivideByZeroException() : new Point(value / point.X, value / point.Y);
+            => point.X == 0 || point.Y == 0
+                ? throw new DivideByZeroException()
+                : new Point(value / point.X, value / point.Y);
 
         public static bool operator ==(Point point, Point other) => point.Equals(other);
         public static bool operator !=(Point point, Point other) => !point.Equals(other);
